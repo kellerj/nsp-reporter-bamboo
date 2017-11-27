@@ -1,0 +1,48 @@
+{
+    "name": "nsp-reporter-bamboo",
+    "version": "1.0.0",
+    "description": "Bamboo-compatible reporter for the Node Security Project",
+    "main": "dist/reporter.js",
+    "engines": {
+        "node": ">=8.0"
+    },
+    "scripts": {
+        "lint": "eslint src --ext .js",
+        "test": "npm run && npm run nsp",
+        "eslint": "eslint",
+        "nsp": "nsp check",
+        "prepare-compile": "rimraf dist/ && mkdir -p dist/ && mkdir -p dist/test",
+        "compile": "babel --no-comments --out-dir dist/ src/",
+        "prepublishOnly": "npm run lint && npm run nsp && npm run prepare-compile && npm run compile"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kellerj/nsp-reporter-bamboo.git"
+    },
+    "keywords": [
+        "nsp",
+        "reporter",
+        "bamboo"
+    ],
+    "author": {
+        "name": "Jonathan Keller",
+        "email": "keller.jonathan@gmail.com"
+    },
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/kellerj/nsp-reporter-bamboo/issues"
+    },
+    "files": [
+        "dist/"
+    ],
+    "homepage": "https://github.com/kellerj/nsp-reporter-bamboo#README.md",
+    "dependencies": {},
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "eslint": "^4.10.0",
+        "eslint-config-airbnb-base": "^12.1.0",
+        "eslint-plugin-import": "^2.8.0",
+        "nsp": "^3.0.0"
+    }
+}
