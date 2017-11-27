@@ -8,10 +8,10 @@
     },
     "scripts": {
         "lint": "eslint src --ext .js",
-        "test": "npm run && npm run nsp",
+        "test": "npm run lint && npm run nsp",
         "eslint": "eslint",
         "nsp": "nsp check",
-        "prepare-compile": "rimraf dist/ && mkdir -p dist/ && mkdir -p dist/test",
+        "prepare-compile": "rimraf dist/ && mkdir -p dist/",
         "compile": "babel --no-comments --out-dir dist/ src/",
         "prepublishOnly": "npm run lint && npm run nsp && npm run prepare-compile && npm run compile"
     },
@@ -33,10 +33,13 @@
         "url": "https://github.com/kellerj/nsp-reporter-bamboo/issues"
     },
     "files": [
-        "dist/"
+        "dist"
     ],
     "homepage": "https://github.com/kellerj/nsp-reporter-bamboo#README.md",
-    "dependencies": {},
+    "dependencies": {
+        "debug": "^2.6.8",
+        "rimraf": "^2.6.1"
+    },
     "devDependencies": {
         "babel-cli": "^6.26.0",
         "babel-preset-env": "^1.6.1",
