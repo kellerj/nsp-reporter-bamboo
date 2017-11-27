@@ -1,7 +1,7 @@
 {
-    "name": "nsp-reporter-bamboo",
+    "name": "nsp-reporter-mocha",
     "version": "1.0.0",
-    "description": "Bamboo-compatible reporter for the Node Security Project",
+    "description": "Mocha-compatible reporter for the Node Security Project",
     "main": "dist/reporter.js",
     "engines": {
         "node": ">=8.0"
@@ -17,12 +17,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/kellerj/nsp-reporter-bamboo.git"
+        "url": "git+https://github.com/kellerj/nsp-reporter-mocha.git"
     },
     "keywords": [
         "nsp",
         "reporter",
-        "bamboo"
+        "mocha"
     ],
     "author": {
         "name": "Jonathan Keller",
@@ -30,12 +30,12 @@
     },
     "license": "Apache-2.0",
     "bugs": {
-        "url": "https://github.com/kellerj/nsp-reporter-bamboo/issues"
+        "url": "https://github.com/kellerj/nsp-reporter-mocha/issues"
     },
     "files": [
         "dist"
     ],
-    "homepage": "https://github.com/kellerj/nsp-reporter-bamboo#README.md",
+    "homepage": "https://github.com/kellerj/nsp-reporter-mocha#README.md",
     "dependencies": {
         "debug": "^2.6.8",
         "rimraf": "^2.6.1"
