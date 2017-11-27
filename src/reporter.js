@@ -30,7 +30,7 @@ check.success = function checkSuccess(result) {
   result.data.forEach((validationFailure) => {
     summary.failures.push({
       title: validationFailure.title,
-      fullTitle: `${validationFailure.ancestorTitles} ${validationFailure.title}`,
+      fullTitle: `${validationFailure.module} v${validationFailure.version} ${validationFailure.title}`,
       duration: 0,
       errorCount: 1,
       error: format(

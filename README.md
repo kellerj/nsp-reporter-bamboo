@@ -18,14 +18,14 @@ See the [nsp](https://github.com/nodesecurity/nsp) website for more information.
     "tests": 1,
     "passes": 0,
     "failures": 1,
-    "duration": 1176,
-    "start": "2017-11-27T22:50:36.092Z",
-    "end": "2017-11-27T22:50:37.268Z"
+    "duration": 750,
+    "start": "2017-11-27T22:54:24.609Z",
+    "end": "2017-11-27T22:54:25.359Z"
   },
   "failures": [
     {
       "title": "Regular Expression Denial of Service",
-      "fullTitle": "undefined Regular Expression Denial of Service",
+      "fullTitle": "debug v2.6.8 Regular Expression Denial of Service",
       "duration": 0,
       "errorCount": 1,
       "error": "Module debug has a known vulnerability: \"Regular Expression Denial of Service\" (vulnerable: <= 2.6.8 || >= 3.0.0 <= 3.0.1, patched: >= 2.6.9 < 3.0.0 || >= 3.1.0, yours: 2.6.8), see https://nodesecurity.io/advisories/534"
