@@ -1,6 +1,3 @@
-/* eslint-disable no-console */
-import { format } from 'util';
-
 const startTime = new Date();
 
 let outputStream = process.stdout;
@@ -27,7 +24,7 @@ export function success(result) {
 export const check = {};
 
 check.success = function checkSuccess(result) {
-  console.log(JSON.stringify(result, null, 2));
+  // console.log(JSON.stringify(result, null, 2));
   const summary = {
     stats: {
       tests: result.data.length,
