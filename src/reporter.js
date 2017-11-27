@@ -3,45 +3,53 @@ import { format } from 'util';
 
 const startTime = new Date();
 
+let outputStream = process.stdout;
+let errorStream = process.stderr;
+
+export function setOutputStream(writable) {
+  outputStream = writable;
+}
+
+export function setErrorStream(writable) {
+  errorStream = writable;
+}
+
 export function error(err) {
-  console.error(err.toString());
+  errorStream.write(err.toString());
+  errorStream.write('\n');
 }
 
 export function success(result) {
-  console.log(result);
+  outputStream.write(result);
+  outputStream.write('\n');
 }
 
 export const check = {};
 
 check.success = function checkSuccess(result) {
+  console.log(JSON.stringify(result, null, 2));
   const summary = {
     stats: {
-      tests: 0,
-      passes: 0,
-      failures: 0,
-      duration: Date.now() - startTime,
+      tests: result.data.length,
+      failures: result.data.length,
       start: startTime,
       end: new Date(),
+      duration: Date.now() - startTime,
     },
     failures: [],
-    passes: [],
-    skipped: [],
   };
   result.data.forEach((validationFailure) => {
     summary.failures.push({
-      title: validationFailure.title,
+      title: `CVSS: ${validationFailure.cvss_score} ${validationFailure.title}`,
       fullTitle: `${validationFailure.module} v${validationFailure.version} ${validationFailure.title}`,
       duration: 0,
       errorCount: 1,
-      error: format(
-        'Module %s has a known vulnerability: "%s" (vulnerable: %s, patched: %s, yours: %s), see %s',
-        validationFailure.module, validationFailure.title, validationFailure.vulnerable_versions,
-        validationFailure.patched_versions, validationFailure.version, validationFailure.advisory,
-      ),
+      error: `${validationFailure.overview}
+      (vulnerable: ${validationFailure.vulnerable_versions}, patched: ${validationFailure.patched_versions}, yours: ${validationFailure.version})
+      see ${validationFailure.advisory}`,
     });
-    summary.stats.tests += 1;
-    summary.stats.failures += 1;
 
-    console.log(JSON.stringify(summary, null, 2));
+    outputStream.write(JSON.stringify(summary, null, 2));
+    outputStream.write('\n');
   });
 };

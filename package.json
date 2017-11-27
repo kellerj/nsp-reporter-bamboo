@@ -4,7 +4,7 @@
     "description": "Mocha-compatible reporter for the Node Security Project",
     "main": "dist/reporter.js",
     "engines": {
-        "node": ">=8.0"
+        "node": ">=6.0"
     },
     "scripts": {
         "lint": "eslint src --ext .js",
@@ -43,9 +43,11 @@
     "devDependencies": {
         "babel-cli": "^6.26.0",
         "babel-preset-env": "^1.6.1",
+        "chai": "^4.1.2",
         "eslint": "^4.10.0",
         "eslint-config-airbnb-base": "^12.1.0",
         "eslint-plugin-import": "^2.8.0",
+        "mocha": "^4.0.1",
         "nsp": "^3.0.0"
     }
 }
