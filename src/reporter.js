@@ -28,12 +28,15 @@ check.success = function checkSuccess(result) {
   const summary = {
     stats: {
       tests: result.data.length,
+      passes: 0,
       failures: result.data.length,
       start: startTime,
       end: new Date(),
       duration: Date.now() - startTime,
     },
     failures: [],
+    passes: [],
+    skipped: [],
   };
   result.data.forEach((validationFailure) => {
     summary.failures.push({
