@@ -1,6 +1,6 @@
 {
     "name": "nsp-reporter-mocha",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Mocha-compatible reporter for the Node Security Project",
     "main": "dist/reporter.js",
     "engines": {
@@ -41,8 +41,7 @@
         "dist"
     ],
     "homepage": "https://github.com/kellerj/nsp-reporter-mocha#README.md",
-    "dependencies": {
-    },
+    "dependencies": {},
     "devDependencies": {
         "babel-cli": "^6.26.0",
         "babel-preset-env": "^1.6.1",
