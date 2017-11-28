@@ -6,12 +6,12 @@ import * as reporter from '../src/reporter';
 const sandbox = sinon.createSandbox();
 
 context('reporter', () => {
-  let stdout = {
+  const stdout = {
     write: function write() {
       // do nothing
     },
   };
-  let stderr = {
+  const stderr = {
     write: function write() {
       // do nothing
     },
@@ -22,8 +22,8 @@ context('reporter', () => {
   });
 
   beforeEach(() => {
-    stdout = sandbox.mock(stdout);
-    stderr = sandbox.mock(stderr);
+    sandbox.spy(stdout, 'write');
+    sandbox.spy(stderr, 'write');
   });
 
   afterEach(() => {
@@ -33,11 +33,17 @@ context('reporter', () => {
   describe('#error', () => {
     it('writes the error to the error stream', () => {
       reporter.error(new Error('Error Message'));
+      expect(stdout.write.notCalled).to.equal(true, 'stderr should not have been used');
+      expect(stderr.write.called).to.equal(true, 'should have been written to stderr');
+      expect(stderr.write.firstCall.args[0]).to.include('Error Message', 'message should have been written to stderr');
     });
   });
   describe('#success', () => {
     it('writes the result to the output stream', () => {
       reporter.success('Some sort of result');
+      expect(stderr.write.notCalled).to.equal(true, 'stderr should not have been used');
+      expect(stdout.write.called).to.equal(true, 'should have been written to stdout');
+      expect(stdout.write.firstCall.args[0]).to.include('Some sort of result', 'message should have been written to stdout');
     });
   });
   describe('#check.success', () => {
@@ -66,11 +72,24 @@ context('reporter', () => {
       ],
     };
     it('sets the tests and failures to the length of the data array', () => {
+      const result = reporter.check.success(results);
+      expect(result.stats.tests).to.equal(2);
+      expect(result.stats.failures).to.equal(2);
     });
     it('pushes an element into the failures array for each issue', () => {
-      reporter.check.success(results);
+      const result = reporter.check.success(results);
+      expect(result.failures.length).to.equal(2);
+      expect(result.failures[0].title).to.include('Some unimportant problem');
+      expect(result.failures[1].title).to.include('Some critical problem');
     });
     it('writes the result to the output stream in JSON format', () => {
+      const result = reporter.check.success(results);
+      expect(stderr.write.notCalled).to.equal(true, 'stderr should not have been used');
+      expect(stdout.write.called).to.equal(true, 'should have been written to stdout');
+      const jsonOutput = stdout.write.firstCall.args[0];
+      expect(() => JSON.parse(jsonOutput)).to.not.throw();
+      expect(jsonOutput).to.equal(JSON.stringify(result, null, 2));
+      // expect(JSON.parse(jsonOutput)).to.deep.equal(result);
     });
   });
 });

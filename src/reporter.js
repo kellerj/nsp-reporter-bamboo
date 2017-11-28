@@ -45,9 +45,8 @@ check.success = function checkSuccess(result) {
       (vulnerable: ${validationFailure.vulnerable_versions}, patched: ${validationFailure.patched_versions}, yours: ${validationFailure.version})
       see ${validationFailure.advisory}`,
     });
-
-    outputStream.write(JSON.stringify(summary, null, 2));
-    outputStream.write('\n');
-    return summary;
   });
+  outputStream.write(JSON.stringify(summary, null, 2));
+  outputStream.write('\n');
+  return summary;
 };
