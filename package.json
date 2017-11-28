@@ -42,7 +42,6 @@
     ],
     "homepage": "https://github.com/kellerj/nsp-reporter-mocha#README.md",
     "dependencies": {
-        "debug": "^2.6.8"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
