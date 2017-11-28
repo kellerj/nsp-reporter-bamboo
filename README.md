@@ -2,6 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/nsp-reporter-mocha.svg)](https://www.npmjs.com/package/nsp-reporter-mocha)
 [![Travis CI](https://img.shields.io/travis/kellerj/nsp-reporter-mocha/master.svg)](https://travis-ci.org/kellerj/nsp-reporter-mocha)
+[![Coverage Status](https://coveralls.io/repos/github/kellerj/nsp-reporter-mocha/badge.svg?branch=master)](https://coveralls.io/github/kellerj/nsp-reporter-mocha?branch=master)
 ![node](https://img.shields.io/node/v/nsp-reporter-mocha.svg)
 [![License](https://img.shields.io/npm/l/nsp-reporter-mocha.svg)](https://github.com/kellerj/nsp-reporter-mocha/blob/master/LICENSE)
 
