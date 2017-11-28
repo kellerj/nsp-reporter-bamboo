@@ -8,7 +8,12 @@
     },
     "scripts": {
         "lint": "eslint src --ext .js",
-        "test": "npm run lint && npm run nsp",
+        "test": "nyc mocha --require babel-register --reporter spec test/**/*.test.js",
+        "coveralls": "nyc report --reporter=text-lcov | coveralls",
+        "test:mocha": "mocha --require babel-register --reporter spec test/**/*.test.js",
+        "test:watch": "mocha --require babel-register --reporter min test/**/*.test.js --watch",
+        "mocha": "mocha --require babel-register",
+        "nyc": "nyc",
         "eslint": "eslint",
         "nsp": "nsp check",
         "prepare-compile": "rimraf dist/ && mkdir -p dist/",
@@ -37,17 +42,60 @@
     ],
     "homepage": "https://github.com/kellerj/nsp-reporter-mocha#README.md",
     "dependencies": {
-        "debug": "^2.6.8",
-        "rimraf": "^2.6.1"
+        "debug": "^2.6.8"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
         "babel-preset-env": "^1.6.1",
+        "babel-register": "^6.26.0",
         "chai": "^4.1.2",
+        "coveralls": "^3.0.0",
         "eslint": "^4.10.0",
         "eslint-config-airbnb-base": "^12.1.0",
         "eslint-plugin-import": "^2.8.0",
         "mocha": "^4.0.1",
-        "nsp": "^3.0.0"
+        "nsp": "^3.0.0",
+        "nyc": "^11.3.0",
+        "rimraf": "^2.6.1",
+        "sinon": "^4.1.2"
+    },
+    "nyc": {
+        "exclude": [
+            "dist/**",
+            "coverage/**",
+            "test/**"
+        ],
+        "check-coverage": false,
+        "lines": 90,
+        "statements": 90,
+        "functions": 100,
+        "branches": 75,
+        "reporter": [
+            "lcov",
+            "text-summary",
+            "text",
+            "html"
+        ],
+        "watermarks": {
+            "lines": [
+                75,
+                90
+            ],
+            "functions": [
+                90,
+                100
+            ],
+            "branches": [
+                50,
+                75
+            ],
+            "statements": [
+                75,
+                90
+            ]
+        },
+        "cache": true,
+        "all": true,
+        "report-dir": "./coverage"
     }
 }

@@ -48,5 +48,6 @@ check.success = function checkSuccess(result) {
 
     outputStream.write(JSON.stringify(summary, null, 2));
     outputStream.write('\n');
+    return summary;
   });
 };
